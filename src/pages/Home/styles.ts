@@ -7,6 +7,8 @@ const Container = styled.div`
   height: 100%;
 
   padding: 1.4rem;
+
+  overflow-x: hidden;
 `;
 
 const Header = styled.header`
@@ -74,8 +76,6 @@ const MainContent = styled.main`
   }
 
   .search-form {
-    position: relative;
-
     width: 100%;
     max-width: 80%;
     height: 4.8rem;
@@ -120,21 +120,26 @@ const MainContent = styled.main`
         color: #9f9f9f;
         font-weight: 700;
       }
+    }
 
-      &:focus {
-        & + .submit-button {
-          visibility: visible;
-          transform: translateX(0rem);
-        }
+    &:focus,
+    &:hover,
+    > input:focus {
+      .submit-button,
+      & + .submit-button {
+        visibility: visible;
+        transform: translateX(0rem);
       }
     }
 
     .submit-button {
-      position: absolute;
+      visibility: hidden;
+
+      width: 2.4rem;
+      height: 2.4rem;
 
       right: 1rem;
       transform: translateX(6rem);
-      visibility: hidden;
 
       border: 0;
       border-radius: 0.4rem;
@@ -143,8 +148,6 @@ const MainContent = styled.main`
       display: flex;
       align-items: center;
       justify-content: center;
-
-      padding: 1rem;
 
       &:focus {
         visibility: visible;

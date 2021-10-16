@@ -1,21 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FiArrowRight, FiSettings } from 'react-icons/fi';
 
-import firefoxLogoImage from '../../assets/images/firefox-logo.png';
-import googleIconImage from '../../assets/icons/google.ico';
+import firefoxLogoImage from 'assets/images/firefox-logo.png';
+import googleIconImage from 'assets/icons/google.ico';
 
 import * as SC from './styles';
 
+import { SidebarMenu } from 'components/SidebarMenu';
+
+import { MostAccessedItems } from 'components/MostAccessedItems';
+import { SidebarMenuSection } from 'components/SidebarMenuSection';
+import { SidebarMenuSectionCodes } from 'models/enumerators/SidebarMenuSectionCodes';
+
 const Home: React.FC = () => {
+  const [showSidebar, setShowSidebar] = useState(false);
+
   return (
     <SC.Container>
       <SC.Header>
-        <SC.SettingsButton>
+        <SC.SettingsButton onClick={() => setShowSidebar(true)}>
           <FiSettings color="#C5C5C8" />
         </SC.SettingsButton>
       </SC.Header>
 
-      <SC.MainContent className="debugX">
+      <SC.MainContent>
         <div className="logo-container">
           <img src={firefoxLogoImage} alt="Logo" />
 
@@ -37,12 +45,29 @@ const Home: React.FC = () => {
           </button>
         </form>
 
-        <section className="most-accessed-sites-container">
-          <span>Site A</span>
-          <span>Site B</span>
-          <span>Site C</span>
-        </section>
+        <MostAccessedItems />
       </SC.MainContent>
+
+      <SidebarMenu
+        visible={showSidebar}
+        handleCloseButtonClick={() => setShowSidebar(false)}
+      >
+        <SidebarMenuSection
+          sidebarMenuSectionCode={SidebarMenuSectionCodes.RecentActivity}
+          title="Shortcuts"
+          description="Sites you save or visit"
+        >
+          <h1>Hi, i am the content</h1>
+
+          <strong>I worked!</strong>
+        </SidebarMenuSection>
+
+        <SidebarMenuSection
+          sidebarMenuSectionCode={SidebarMenuSectionCodes.RecentActivity}
+          title="Recent activity"
+          description="A section of recent sites and content"
+        />
+      </SidebarMenu>
     </SC.Container>
   );
 };
