@@ -1,12 +1,11 @@
 import React, { useCallback, useState } from 'react';
 import { FiMoreHorizontal } from 'react-icons/fi';
 
-import { LinkItemType } from 'components/MostAccessedItems';
-import { ContextMenu, ContextMenuGroup } from 'components/ContextMenu';
+import { ContextMenu } from 'components/ContextMenu';
+import { LinkItemProps } from 'models/types/LinkItem';
+import { ContextMenuGroup } from 'models/types/ContextMenu';
 
 import * as SC from './styles';
-
-type LinkItemProps = { link: LinkItemType };
 
 const LinkItem: React.FC<LinkItemProps> = ({ link }) => {
   const [contextMenuGroups] = useState<ContextMenuGroup[]>([
@@ -61,7 +60,7 @@ const LinkItem: React.FC<LinkItemProps> = ({ link }) => {
   const [hideOptionsContainerTimeout, setHideOptionsContainerTimeout] =
     useState<NodeJS.Timeout | null>(null);
 
-  const handleOptionContainerMouseLeave = useCallback(() => {
+  const handleContextMenuMouseLeave = useCallback(() => {
     const timeout = setTimeout(() => {
       setShowContextMenu(false);
     }, 500);
@@ -69,7 +68,7 @@ const LinkItem: React.FC<LinkItemProps> = ({ link }) => {
     setHideOptionsContainerTimeout(timeout);
   }, []);
 
-  const handleOptionContainerMouseEnter = useCallback(() => {
+  const handleContextMenuMouseEnter = useCallback(() => {
     hideOptionsContainerTimeout && clearTimeout(hideOptionsContainerTimeout);
   }, [hideOptionsContainerTimeout]);
 
@@ -100,8 +99,8 @@ const LinkItem: React.FC<LinkItemProps> = ({ link }) => {
       <ContextMenu
         visible={showContextMenu}
         contextMenuGroups={contextMenuGroups}
-        handleOptionContainerMouseEnter={handleOptionContainerMouseEnter}
-        handleOptionContainerMouseLeave={handleOptionContainerMouseLeave}
+        handleContextMenuMouseEnter={handleContextMenuMouseEnter}
+        handleContextMenuMouseLeave={handleContextMenuMouseLeave}
       />
     </SC.Container>
   );

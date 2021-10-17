@@ -1,16 +1,9 @@
 import React, { useState } from 'react';
 
 import { LinkItem } from 'components/LinkItem';
+import { LinkItemType } from 'models/types/LinkItem';
 
 import * as SC from './styles';
-
-type LinkItemType = {
-  href: string;
-  label: string;
-  iconUrl: string;
-  alternativeText: string;
-  isSponsored?: boolean;
-};
 
 const MostAccessedItems: React.FC = () => {
   const [links] = useState<LinkItemType[]>([
@@ -34,4 +27,3 @@ const MostAccessedItems: React.FC = () => {
 };
 
 export { MostAccessedItems };
-export type { LinkItemType };

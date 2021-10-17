@@ -1,11 +1,8 @@
-import React, { InputHTMLAttributes } from 'react';
+import React from 'react';
+
+import { SidebarMenuProps } from 'models/types/SidebarMenu';
 
 import * as SC from './styles';
-
-type SidebarMenuProps = {
-  visible: boolean;
-  handleCloseButtonClick?: () => void;
-} & InputHTMLAttributes<HTMLDivElement>;
 
 const SidebarMenu: React.FC<SidebarMenuProps> = ({
   visible,

@@ -1,10 +1,7 @@
-import React, { InputHTMLAttributes } from 'react';
+import { SwitchButtonProps } from 'models/types/SwitchButton';
+import React from 'react';
 
 import * as SC from './styles';
-
-type SwitchButtonProps = {
-  active: boolean;
-} & InputHTMLAttributes<HTMLButtonElement>;
 
 const SwitchButton: React.FC<SwitchButtonProps> = ({ active, ...props }) => {
   return (
@@ -15,4 +12,3 @@ const SwitchButton: React.FC<SwitchButtonProps> = ({ active, ...props }) => {
 };
 
 export { SwitchButton };
-export type { SwitchButtonProps };

@@ -1,38 +1,21 @@
 import React from 'react';
 import { v4 as uuid } from 'uuid';
 
+import { ContextMenuProps } from 'models/types/ContextMenu';
+
 import * as SC from './styles';
-
-type ContextMenuProps = {
-  visible: boolean;
-  contextMenuGroups: ContextMenuGroup[];
-  handleOptionContainerMouseLeave: () => void;
-  handleOptionContainerMouseEnter: () => void;
-};
-
-type ContextMenuGroup = {
-  itens: ContextMenuItem[];
-};
-
-type ContextMenuItem = {
-  label: string;
-  disabled?: boolean;
-  onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-};
 
 const ContextMenu: React.FC<ContextMenuProps> = ({
   visible,
   contextMenuGroups,
-  handleOptionContainerMouseLeave,
-  handleOptionContainerMouseEnter,
+  handleContextMenuMouseLeave,
+  handleContextMenuMouseEnter,
 }) => {
-
-
   return (
     <SC.Container
       visible={visible}
-      onMouseLeave={handleOptionContainerMouseLeave}
-      onMouseEnter={handleOptionContainerMouseEnter}
+      onMouseLeave={handleContextMenuMouseLeave}
+      onMouseEnter={handleContextMenuMouseEnter}
     >
       {contextMenuGroups.map((group) => (
         <ul key={uuid()}>
@@ -50,4 +33,3 @@ const ContextMenu: React.FC<ContextMenuProps> = ({
 };
 
 export { ContextMenu };
-export type { ContextMenuGroup };

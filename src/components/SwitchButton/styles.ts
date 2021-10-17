@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components';
 
-import { SwitchButtonProps } from '.';
+import { SwitchButtonProps } from 'models/types/SwitchButton';
 
 const Container = styled.button<SwitchButtonProps>`
   position: relative;

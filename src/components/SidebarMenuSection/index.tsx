@@ -1,15 +1,9 @@
 import React, { useCallback, useState } from 'react';
 
-import { SidebarMenuSectionCodes } from 'models/enumerators/SidebarMenuSectionCodes';
 import { SwitchButton } from 'components/SwitchButton';
+import { SidebarMenuSectionProps } from 'models/types/SidebarMenu';
 
 import * as SC from './styles';
-
-type SidebarMenuSectionProps = {
-  sidebarMenuSectionCode: SidebarMenuSectionCodes;
-  title: string;
-  description?: string;
-};
 
 const SidebarMenuSection: React.FC<SidebarMenuSectionProps> = ({
   title,
