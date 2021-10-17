@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import { FiArrowRight, FiSettings } from 'react-icons/fi';
 
 import firefoxLogoImage from 'assets/images/firefox-logo.png';
@@ -14,6 +14,25 @@ import { SidebarMenuSectionCodes } from 'models/enumerators/SidebarMenuSectionCo
 
 const Home: React.FC = () => {
   const [showSidebar, setShowSidebar] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement | null>(null);
+
+  const handleSearchFormSubmit = useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const search = searchInputRef.current?.value;
+
+      if (!search) {
+        alert('Good try ;)');
+
+        return;
+      }
+
+      const searchLink = `https://www.google.com/search?q=${search}`;
+
+      window.location.href = searchLink;
+    },
+    [],
+  );
 
   return (
     <SC.Container>
@@ -30,13 +49,14 @@ const Home: React.FC = () => {
           <strong>Fakefox</strong>
         </div>
 
-        <form className="search-form">
+        <form className="search-form" onSubmit={handleSearchFormSubmit}>
           <div className="icon">
             <img src={googleIconImage} alt="Google" />
           </div>
 
           <input
             type="text"
+            ref={searchInputRef}
             placeholder="Search with google or enter address"
           />
 
